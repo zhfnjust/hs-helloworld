@@ -5,7 +5,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        ghc: ['8.8.4']
+        ghc: [latest]
         os: [self-hosted, windows-latest]
     name: Haskell GHC ${{ matrix.ghc }} sample
     steps:
