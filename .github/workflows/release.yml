@@ -7,9 +7,6 @@ jobs:
       matrix:
         ghc: ['8.8.4']
         os: [self-hosted, windows-latest]
-        exclude:
-          # GHC 8.8+ only works with cabal v3+
-          - ghc: 8.8.4
     name: Haskell GHC ${{ matrix.ghc }} sample
     steps:
       - uses: actions/checkout@v3
