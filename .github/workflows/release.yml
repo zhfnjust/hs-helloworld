@@ -16,7 +16,7 @@ jobs:
           ghc-version: ${{ matrix.ghc }}
           enable-stack: true
           stack-version: 'latest'
-      - name: Build helloworld
-        run: stack build
-      - name: Exec helloworld
-        run: stack exec helloworld-exe
+      - run: runhaskell Hello.hs
+      - run: stack test --system-ghc
+      - run: stack build --system-ghc
+      - run: stack exec --system-ghc helloworld-exe
