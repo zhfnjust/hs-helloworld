@@ -1,15 +1,27 @@
 on: [push]
 name: build
 jobs:
-  runhaskell:
-    name: Hello World
-    runs-on: ubuntu-latest # or macOS-latest, or windows-latest
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        ghc: [ '8.8.4']
+        os: [ubuntu-latest]
+        exclude:
+          # GHC 8.8+ only works with cabal v3+
+          - ghc: 8.8.4
+    name: Haskell GHC ${{ matrix.ghc }} sample
     steps:
       - uses: actions/checkout@v3
-      - uses: haskell/actions/setup@v2
+      - name: Setup Haskell
+        uses: haskell/actions/setup@v2
         with:
-          ghc-version: '8.8.4' # Exact version of ghc to use
-          # cabal-version: 'latest'. Omitted, but defaults to 'latest'
+          ghc-version: ${{ matrix.ghc }}
           enable-stack: true
           stack-version: 'latest'
-      - run: runhaskell ./app/Main.hs
+      - name: Testing helloworld
+        run: stack test
+      - name: Build helloworld
+        run: stack build
+      - name: Exec helloworld
+        run: stack exec helloworld-exe
