@@ -15,4 +15,4 @@ jobs:
       - run: runhaskell Hello.hs
       - run: stack test --system-ghc
       - run: stack build --system-ghc
-      - run: stack exec helloworld-exe
+      - run: stack exec --system-ghc helloworld-exe
