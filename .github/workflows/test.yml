@@ -13,3 +13,6 @@ jobs:
           enable-stack: true
           stack-version: 'latest'
       - run: runhaskell Hello.hs
+      - run: stack test --system-ghc
+      - run: stack build --system-ghc
+      - run: stack exec helloworld-exe
