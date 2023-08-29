@@ -6,7 +6,7 @@ jobs:
     strategy:
       matrix:
         ghc: ['8.8.4']
-        os: [ubuntu-latest]
+        os: [self-hosted, windows-latest]
         exclude:
           # GHC 8.8+ only works with cabal v3+
           - ghc: 8.8.4
